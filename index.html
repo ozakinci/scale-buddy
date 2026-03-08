@@ -13,7 +13,7 @@
 
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+      background: linear-gradient(135deg, #7c2d12 0%, #b45309 55%, #92400e 100%);
       min-height: 100vh;
       display: flex;
       align-items: center;
@@ -22,10 +22,10 @@
     }
 
     .container {
-      background: rgba(255, 255, 255, 0.95);
+      background: rgba(30, 41, 59, 0.97);
       backdrop-filter: blur(10px);
       border-radius: 20px;
-      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
       padding: 40px;
       max-width: 900px;
       width: 100%;
@@ -33,7 +33,7 @@
 
     h1 {
       text-align: center;
-      color: #5a67d8;
+      color: #f59e0b;
       margin-bottom: 8px;
       font-size: 2.8em;
       font-weight: 700;
@@ -42,18 +42,19 @@
 
     .subtitle {
       text-align: center;
-      color: #6b7280;
+      color: #94a3b8;
       margin-bottom: 35px;
       font-size: 1em;
       font-weight: 400;
     }
 
     .input-section {
-      background: white;
+      background: rgba(15, 23, 42, 0.7);
       border-radius: 16px;
       padding: 25px;
       margin-bottom: 25px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(245, 158, 11, 0.15);
     }
 
     .dropdowns-container {
@@ -72,50 +73,55 @@
       display: block;
       margin-bottom: 8px;
       font-weight: 600;
-      color: #4b5563;
+      color: #94a3b8;
       font-size: 0.95em;
     }
 
     select {
       padding: 14px 16px;
       font-size: 1.05em;
-      border: 2px solid #e5e7eb;
+      border: 2px solid #334155;
       border-radius: 10px;
-      background: white;
+      background: #1e293b;
       cursor: pointer;
       transition: all 0.3s ease;
       font-family: inherit;
       font-weight: 500;
-      color: #374151;
+      color: #e2e8f0;
+    }
+
+    select option, select optgroup {
+      background: #1e293b;
+      color: #e2e8f0;
     }
 
     select:hover {
-      border-color: #a5b4fc;
+      border-color: #f59e0b;
     }
 
     select:focus {
       outline: none;
-      border-color: #6366f1;
-      box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
+      border-color: #f59e0b;
+      box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.15);
     }
 
     /* Subtle highlighting for unselected dropdown */
     select:has(option[value=""]:not(:checked)) {
-      border-color: #fbbf24;
-      background: #fffbeb;
+      border-color: #d97706;
+      background: #1e293b;
     }
 
     select:invalid {
-      border-color: #fbbf24;
-      background: #fffbeb;
+      border-color: #d97706;
+      background: #1e293b;
     }
 
     .error-message {
-      color: #dc2626;
+      color: #fca5a5;
       font-size: 0.9em;
       margin-top: 10px;
       padding: 10px 14px;
-      background: #fee2e2;
+      background: rgba(220, 38, 38, 0.15);
       border-radius: 8px;
       display: none;
       font-weight: 500;
@@ -142,16 +148,16 @@
     }
 
     .result-card {
-      background: white;
+      background: rgba(15, 23, 42, 0.7);
       padding: 22px;
       border-radius: 12px;
       margin-bottom: 15px;
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
-      border-left: 5px solid #8b5cf6;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+      border-left: 5px solid #f59e0b;
     }
 
     .result-card h3 {
-      color: #6d28d9;
+      color: #f59e0b;
       margin-bottom: 12px;
       font-size: 1.2em;
       font-weight: 700;
@@ -160,7 +166,7 @@
     }
 
     .result-content {
-      color: #374151;
+      color: #cbd5e1;
       font-size: 1.05em;
       line-height: 1.8;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -172,19 +178,20 @@
     .chord-display {
       font-size: 1.8em;
       font-weight: 700;
-      color: #4f46e5;
+      color: #f59e0b;
       text-align: center;
       margin-bottom: 20px;
       padding: 15px;
-      background: linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%);
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.12) 0%, rgba(217, 119, 6, 0.08) 100%);
       border-radius: 12px;
       letter-spacing: 1px;
+      border: 1px solid rgba(245, 158, 11, 0.25);
     }
 
     .scale-notes {
       font-size: 1.1em;
       font-weight: 600;
-      color: #4b5563;
+      color: #94a3b8;
     }
 
     .chord-list {
@@ -196,7 +203,7 @@
 
     .chord-item {
       padding: 4px 0;
-      border-bottom: 1px dashed #e5e7eb;
+      border-bottom: 1px dashed #334155;
     }
 
     .chord-item:last-child {
@@ -205,18 +212,18 @@
 
     .chord-name {
       font-weight: 700;
-      color: #8b5cf6;
+      color: #f59e0b;
       margin-right: 8px;
     }
 
     .chord-notes {
-      color: #6b7280;
+      color: #64748b;
       font-family: 'Courier New', monospace;
     }
 
     .loading {
       text-align: center;
-      color: #6b7280;
+      color: #64748b;
       padding: 20px;
       font-style: italic;
     }
@@ -252,17 +259,17 @@
     }
 
     .result-content::-webkit-scrollbar-track {
-      background: #f1f1f1;
+      background: #0f172a;
       border-radius: 10px;
     }
 
     .result-content::-webkit-scrollbar-thumb {
-      background: #a5b4fc;
+      background: #d97706;
       border-radius: 10px;
     }
 
     .result-content::-webkit-scrollbar-thumb:hover {
-      background: #818cf8;
+      background: #f59e0b;
     }
   </style>
 </head>
@@ -420,7 +427,7 @@
       // Diatonic Scales
       major: ['W', 'W', 'H', 'W', 'W', 'W', 'H'],
       minor: ['W', 'H', 'W', 'W', 'H', 'W', 'W'],
-      harmonicMinor: ['W', 'H', 'W', 'W', 'H', 'W', 'H'],
+      harmonicMinor: ['W', 'H', 'W', 'W', 'H', '3H', 'H'],
       melodicMinor: ['W', 'H', 'W', 'W', 'W', 'W', 'H'],
       dorian: ['W', 'H', 'W', 'W', 'W', 'H', 'W'],
       phrygian: ['H', 'W', 'W', 'W', 'H', 'W', 'W'],
@@ -450,7 +457,7 @@
       tritone: ['H', '3H', 'W', 'H', '3H', 'W'],
       balinese: ['H', '4H', 'W', 'H', '4H'],
       japanese: ['H', '4H', 'W', '3H', 'W'],
-      hirajoshi: ['4H', 'W', 'H', '3H', 'H'],
+      hirajoshi: ['4H', 'W', 'H', '4H', 'H'],
       iwato: ['H', '4H', 'H', '4H', 'W'],
       yo: ['W', '3H', 'W', 'W', '3H'],
       chinese: ['W', 'W', '3H', 'W', '3H'],
@@ -651,8 +658,8 @@
       'Minor': [0, 3, 7],
       'Diminished': [0, 3, 6],
       'Augmented': [0, 4, 8],
-      'Suspended 2nd': [0, 2, 7],
-      'Suspended 4th': [0, 5, 7],
+      'sus2': [0, 2, 7],
+      'sus4': [0, 5, 7],
       'Power (5th)': [0, 7],
       
       // Sixth Chords
@@ -671,6 +678,7 @@
       '7(#5)': [0, 4, 8, 10],
       '7(b9)': [0, 4, 7, 10, 13],
       '7(#9)': [0, 4, 7, 10, 15],
+      '7sus2': [0, 2, 7, 10],
       '7sus4': [0, 5, 7, 10],
       
       // Extended Chords
@@ -689,20 +697,14 @@
       'add11': [0, 4, 7, 17],
       'add13': [0, 4, 7, 21],
       
-      // Suspended Chords
-      'sus2': [0, 2, 7],
-      'sus4': [0, 5, 7],
-      '7sus2': [0, 2, 7, 10],
-      '7sus4': [0, 5, 7, 10],
-      
       // Altered Chords
       'Altered (7alt)': [0, 4, 7, 10, 13, 15, 18],
       
       // Special/Classical Chords
-      'Neapolitan (N6)': [0, 3, 7],
+      'Neapolitan (N6)': [0, 4, 7],
       'Italian 6th': [0, 4, 10],
       'French 6th': [0, 4, 9, 10],
-      'German 6th': [0, 4, 10, 3],
+      'German 6th': [0, 3, 4, 10],
       'Augmented Major 7': [0, 4, 8, 11],
     };
 
@@ -796,47 +798,35 @@
     }
 
     function applyEnharmonicSpelling(notes, parentScale) {
-      // Maps note names to their degree in the parent scale
-      const degreeMap = new Map();
-      for (let i = 0; i < parentScale.length; i++) {
-        const baseName = parentScale[i].replace(/#|b/g, '');
-        degreeMap.set(baseName, parentScale[i]);
+      const semitoneToSpelling = new Map();
+      for (const scaleNote of parentScale) {
+        const semitone = getNoteIndex(scaleNote);
+        if (semitone !== -1) {
+          semitoneToSpelling.set(semitone, scaleNote);
+        }
       }
-      
+
+      // Determine flat vs sharp preference from the parent scale
+      let flatCount = 0, sharpCount = 0;
+      for (const note of parentScale) {
+        if (note.includes('b')) flatCount++;
+        if (note.includes('#')) sharpCount++;
+      }
+      const preferFlats = flatCount >= sharpCount;
+
+      const flatSpellings  = { 1:'Db', 3:'Eb', 6:'Gb', 8:'Ab', 10:'Bb' };
+      const sharpSpellings = { 1:'C#', 3:'D#', 6:'F#', 8:'G#', 10:'A#' };
+
       return notes.map(note => {
-        const baseName = note.replace(/#|b/g, '');
-        // Only apply enharmonic spelling if the base name is in the scale
-        // AND the scale's spelling matches the note's spelling
-        if (degreeMap.has(baseName)) {
-          const scaleSpelling = degreeMap.get(baseName);
-          // If the note has an accidental, check if it matches the scale spelling
-          if (note.includes('#') || note.includes('b')) {
-            // Note has accidental, keep it (don't replace G# with G)
-            return note;
-          }
-          // Note has no accidental, use scale spelling
-          return scaleSpelling;
+        const semitone = getNoteIndex(note);
+        if (semitone === -1) return note;
+        // If the scale has an explicit spelling for this semitone, use it
+        if (semitoneToSpelling.has(semitone)) {
+          return semitoneToSpelling.get(semitone);
         }
-        // Base name not in scale, check if it's an enharmonic equivalent
-        // For example, D# should become Eb if Eb is in the scale
-        const enharmonicMap = {
-          'C#': 'Db',
-          'D#': 'Eb',
-          'F#': 'Gb',
-          'G#': 'Ab',
-          'A#': 'Bb'
-        };
-        
-        // Check if the enharmonic equivalent is in the scale
-        const enharmonicEquivalent = enharmonicMap[note];
-        if (enharmonicEquivalent) {
-          const enharmonicBase = enharmonicEquivalent.replace(/#|b/g, '');
-          if (degreeMap.has(enharmonicBase)) {
-            return enharmonicEquivalent;
-          }
-        }
-        
-        // Base name not in scale, keep original
+        // Note is outside the scale - apply flat/sharp preference
+        if (preferFlats && flatSpellings[semitone])  return flatSpellings[semitone];
+        if (!preferFlats && sharpSpellings[semitone]) return sharpSpellings[semitone];
         return note;
       });
     }
@@ -923,16 +913,16 @@
         const scaleSelect = document.getElementById('scale-type');
         
         if (!rootNote && rootSelect.value === '') {
-          rootSelect.style.borderColor = '#fbbf24';
-          rootSelect.style.background = '#fffbeb';
+          rootSelect.style.borderColor = '#d97706';
+          rootSelect.style.background = '#1e293b';
         } else {
           rootSelect.style.borderColor = '';
           rootSelect.style.background = '';
         }
         
         if (!scaleType && scaleSelect.value === '') {
-          scaleSelect.style.borderColor = '#fbbf24';
-          scaleSelect.style.background = '#fffbeb';
+          scaleSelect.style.borderColor = '#d97706';
+          scaleSelect.style.background = '#1e293b';
         } else {
           scaleSelect.style.borderColor = '';
           scaleSelect.style.background = '';
@@ -981,13 +971,13 @@
       let tableHTML = '<table style="border-collapse: collapse; margin: 10px 0;">';
       tableHTML += '<tr>';
       for (let i = 0; i < scaleNotes.length; i++) {
-        tableHTML += `<td style="border: 1px solid #e5e7eb; padding: 8px 12px; text-align: center; min-width: 50px;">`;
+        tableHTML += `<td style="border: 1px solid #334155; padding: 8px 12px; text-align: center; min-width: 50px; background: rgba(15,23,42,0.5);">`;
         tableHTML += `<span class="chord-name" style="font-family: 'Courier New', monospace;">${scaleNotes[i]}</span>`;
         tableHTML += `</td>`;
       }
       tableHTML += '</tr><tr>';
       for (let i = 0; i < romanNumerals.length; i++) {
-        tableHTML += `<td style="border: 1px solid #e5e7eb; padding: 8px 12px; text-align: center; min-width: 50px;">`;
+        tableHTML += `<td style="border: 1px solid #334155; padding: 8px 12px; text-align: center; min-width: 50px; background: rgba(15,23,42,0.3);">`;
         tableHTML += `<span class="chord-notes" style="font-family: 'Courier New', monospace;">${romanNumerals[i]}</span>`;
         tableHTML += `</td>`;
       }
