@@ -14,6 +14,32 @@
 
 ## Core Requirements
 
+### ⚠️ CRITICAL: Scale Degree Letter Naming Rule
+**Every scale position MUST use the correct base letter name, regardless of accidentals.**
+
+Each scale degree position (1, 2, 3, 4, 5, 6, 7, etc.) cycles through the letters in order. Position N always uses the Nth letter of the musical alphabet.
+
+**Example: Bb Scale degrees are B-C-D-E-F-G-A (NOT B-C#-D#-E-F-G-A)**
+- Degree 1: **B**b (uses B)
+- Degree 2: **C** or C# or Cb (uses C - never B# or Db)
+- Degree 3: **D** or D# or Db (uses D - never C## or Ebb)
+- Degree 4: **E** or Eb (uses E - never D# or Fb)
+- Degree 5: **F** or F# or Fb (uses F)
+- Degree 6: **G** or G# or Gb (uses G)
+- Degree 7: **A** or A# or Ab (uses A)
+
+**Implementation:**
+- `getScaleNotes()` uses `SCALE_DEGREES` to enforce correct letter names
+- Accidentals (#, b) are ADDED to the correct letter, never displacing it
+- `ROMAN_NUMERALS` and `SCALE_DEGREE_CHORDS` arrays must align perfectly with scale positions
+- All scale degree positions must map 1:1 to corresponding array indices
+
+**Why it matters:**
+- Music theory correctness: Ensures proper interval naming (3rds, 4ths, 5ths, etc.)
+- Correct symbol notation: D# (a raised 3rd) vs Eb (a lowered 3rd)
+- Proper chord analysis: Distinguishing between III and iv is position-based
+- Professional appearance: Matches standard music notation conventions
+
 ### 1. Input Interface
 Two dropdown menus that auto-update the display when both are selected:
 
@@ -290,7 +316,12 @@ refactor: Simplify applyEnharmonicSpelling logic
 
 ### Scale Notes
 - [ ] Note names use correct enharmonic spelling for the root (Bb not A# for Eb scales)
+- [ ] **CRITICAL: Each scale degree uses correct letter name per scale degree naming rule** 
+  - [ ] Bb scale shows: Bb, C, D, E, F, G, A (NOT Bb, C#, D#, E, F, G#, A)
+  - [ ] E scale shows: E, F#, G#, A, B, C#, D# (NOT E, Gb, Ab, A, B, Cb, Db)
+  - [ ] Position N always uses the Nth letter cyclically - never B# or Db for degree 2
 - [ ] Roman numeral count matches scale note count
+- [ ] Roman numerals align with scale degree positions (Degree 1=I/i, Degree 2=II/ii, etc.)
 - [ ] Degree function names present for all scale degrees
 
 ### Scale Triads
@@ -304,12 +335,16 @@ refactor: Simplify applyEnharmonicSpelling logic
 
 ### Specific Checks
 - [ ] C Major: C D E F G A B
-- [ ] Eb Whole Tone: Eb F G Bb... (Bb not A#)
+- [ ] Bb Blues: Bb C# D# E F G# (using correct scale degree letters: B-C-D-E-F-G)
+- [ ] F# Major: F# G# A# B C# D# E# (NO Gb, Ab, etc. - all using correct letters)
+- [ ] Eb Whole Tone: Eb F G Bb C D (not Eb F G A# B C#)
+- [ ] Ab Minor Pentatonic: Ab Cb Ebb Fb Gb (or simpler: Ab B C Eb F showing correct letters)
 - [ ] A Harmonic Minor: A B C D E F G# (raised 7th present)
 - [ ] B Diminished triad: B D F (not B C# E#)
 - [ ] Test at least one scale from each category
 - [ ] Test root notes: C, C#, Db, Eb, F#, Ab, Bb (both sharp and flat roots)
 - [ ] Test edge cases: Chromatic (12 notes), Pentatonic (5 notes), Diminished (8 notes)
+- [ ] Verify Roman numerals: Position 1 always uses I/i, Position 2 uses II/ii, etc. (never swapped)
 
 **If ANY check fails, do not commit. Fix first.**
 

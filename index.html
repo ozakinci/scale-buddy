@@ -422,6 +422,24 @@
       'Bb': 'A#'
     };
 
+    // SCALE DEGREE LETTER NAMING RULE (Critical for correct notation)
+    // ================================================================
+    // Every scale position MUST use the correct base letter name from SCALE_DEGREES,
+    // regardless of accidentals. Position N always uses the Nth letter cyclically.
+    //
+    // Example: In a Bb scale (starting position B), the degrees are:
+    //   Degree 1: Bb  (uses B)
+    //   Degree 2: C   (uses C - NOT B# or Db)
+    //   Degree 3: D   (uses D - NOT C# or Eb)
+    //   Degree 4: Eb  (uses E - NOT D# or Fb)
+    //   Degree 5: F   (uses F)
+    //   Degree 6: G   (uses G)
+    //   Degree 7: A   (uses A)
+    //   (Degree 8: Bb again, repeating the cycle)
+    //
+    // Accidentals (#, b) are ADDED to the correct letter, not replaced.
+    // This ensures music theory correctness and proper symbol naming.
+
     // W/H interval patterns for scales (W = whole step = 2 semitones, H = half step = 1 semitone)
     const SCALE_PATTERNS = {
       // Diatonic Scales
@@ -519,6 +537,32 @@
       chromatic: 'Chromatic'
     };
 
+    // Scale degree chord formulas (for each scale type) and Roman numeral notation
+    // ============================================================================
+    // SCALE_DEGREE_CHORDS: Defines the chord quality (Major, Minor, Diminished, etc.)
+    //   produced by each scale degree.
+    // ROMAN_NUMERALS: Shows the Roman numeral notation for each degree.
+    //
+    // CRITICAL ALIGNMENT:
+    //   Both arrays must have the SAME LENGTH and CORRESPOND 1:1 with scale positions.
+    //   Position N (1-indexed) uses Roman numeral bases I, II, III, IV, V, VI, VII, VIII, etc.
+    //   The case and accidentals show the chord quality:
+    //     - Uppercase (I, II, III, IV, V, VI) = Major chord
+    //     - Lowercase (i, ii, iii, iv, v, vi) = Minor chord
+    //     - Degree symbol (°) appended = Diminished chord (e.g., vii°, iv°)
+    //     - Plus symbol (+) appended = Augmented chord (e.g., III+, V+)
+    //
+    // Example (Bb Blues scale):
+    //   Degree 1: Bb = i (minor chord built on degree 1)
+    //   Degree 2: C# = II (major chord built on degree 2)
+    //   Degree 3: D# = iii (minor chord built on degree 3)
+    //   Degree 4: E = iv° (diminished chord built on degree 4)
+    //   Degree 5: F = v (minor chord built on degree 5)
+    //   Degree 6: G# = VI (major chord built on degree 6)
+    //
+    // Note: The scale notes themselves use the correct letter names (Bb, C, D, E, F, G)
+    //       per the scale degree naming rule in getScaleNotes().
+
     // Scale degree chord formulas (for each scale type)
     // These define the chord quality for each degree of the scale
     const SCALE_DEGREE_CHORDS = {
@@ -575,9 +619,9 @@
       lydian: ['I', 'II', 'iii', 'iv°', 'V', 'vi', 'vii'],
       mixolydian: ['I', 'ii', 'iii°', 'IV', 'v', 'vi', 'VII'],
       locrian: ['i°', 'II', 'iii', 'iv', 'V', 'VI', 'vii'],
-      majorPentatonic: ['I', 'ii', 'iii', 'V', 'vi'],
-      minorPentatonic: ['i', 'III', 'iv', 'v', 'VII'],
-      blues: ['i', 'III', 'iv', 'v°', 'v', 'VII'],
+      majorPentatonic: ['I', 'ii', 'iii', 'IV', 'v'],
+      minorPentatonic: ['i', 'II', 'iii', 'iv', 'V'],
+      blues: ['i', 'II', 'iii', 'iv°', 'v', 'VI'],
       wholeTone: ['I+', 'II+', 'III+', 'IV+', 'V+', 'VI+'],
       diminishedHW: ['i°', 'II', 'iii', 'iv°', 'V', 'vi', 'vii°', 'VIII'],
       diminishedWH: ['i°', 'ii', 'III', 'iv°', 'v', 'VI', 'vii°', 'viii'],
@@ -605,7 +649,7 @@
       majorBebop: ['I', 'ii', 'iii', 'IV', 'V', 'vi', 'vii°', 'VIII'],
       minorBebop: ['i', 'ii°', 'III', 'iv', 'v', 'VI', 'VII', 'viii°'],
       dominantBebop: ['I', 'ii', 'iii°', 'IV', 'v', 'vi', 'VII', 'viii'],
-      chromatic: ['i', 'II', 'ii', 'III', 'iii', 'IV', 'iv', 'V', 'v', 'VI', 'vi', 'VII']
+      chromatic: ['i', 'II', 'iii', 'IV', 'v', 'VI', 'vii', 'VIII', 'ix', 'X', 'xi', 'XII']
     };
 
     // Chord function names for each scale type
@@ -750,6 +794,9 @@
 
     // Get scale notes with proper enharmonic spelling
     function getScaleNotes(rootNote, scaleType) {
+      // Build a scale with correct enharmonic spelling based on scale degree positions.
+      // CRITICAL: Each degree MUST use its correct letter name (A-G cyclically), even if
+      // accidentals are needed. This implements the scale degree letter naming rule.
       const pattern = SCALE_PATTERNS[scaleType];
       if (!pattern) return [];
       
@@ -765,13 +812,15 @@
       for (let i = 0; i < semitones.length; i++) {
         const targetSemitone = (rootIndex + semitones[i]) % 12;
         
-        // Get the scale degree name (C, D, E, F, G, A, B)
+        // Get the scale degree name using the cyclic sequence of letters (C, D, E, F, G, A, B)
+        // This ensures degree N always uses the Nth letter, maintaining proper music theory notation
         const degreeName = SCALE_DEGREES[(baseIndex + i) % 7];
         
         // Find the natural note position
         const degreeNaturalIndex = NOTES.indexOf(degreeName);
         
         // Calculate how many semitones from the natural note to reach the target
+        // This determines the accidental needed (#, b, or none)
         const semitonesToTarget = (targetSemitone - degreeNaturalIndex + 12) % 12;
         
         let noteToUse = degreeName;
