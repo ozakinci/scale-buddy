@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -275,7 +275,7 @@
 </head>
 <body>
   <div class="container">
-    <h1>♪ ScaleBuddy</h1>
+    <h1>? ScaleBuddy</h1>
     <p class="subtitle">Comprehensive Music Theory Reference Tool</p>
 
     <section class="input-section">
@@ -392,15 +392,15 @@
 
       <div class="result-card">
         <h3>Scale Notes</h3>
-        <div class="result-content scale-notes" id="scale-result">â€”</div>
+        <div class="result-content scale-notes" id="scale-result">Loading...</div>
       </div>
 
       <div class="result-card">        <h3>Scale Triads</h3>
-        <div class="result-content chord-list" id="triads-result">—</div>
+        <div class="result-content chord-list" id="triads-result">Loading...</div>
       </div>
 
       <div class="result-card">        <h3>Scale Chords</h3>
-        <div class="result-content chord-list" id="chords-result">â€”</div>
+        <div class="result-content chord-list" id="chords-result">Loading...</div>
       </div>
     </section>
   </div>
@@ -460,7 +460,9 @@
       hirajoshi: ['4H', 'W', 'H', '4H', 'H'],
       iwato: ['H', '4H', 'H', '4H', 'W'],
       yo: ['W', '3H', 'W', 'W', '3H'],
+      // Note: Chinese scale (also called Kumoi with pentatonic variant)
       chinese: ['W', 'W', '3H', 'W', '3H'],
+      // Note: Mongolian scale (identical to Chinese scale - regional naming variant)
       mongolian: ['W', 'W', '3H', 'W', '3H'],
       persian: ['H', '3H', 'H', 'H', 'W', '3H', 'H'],
       arabian: ['W', 'H', 'W', 'H', 'W', 'H', 'W'],
@@ -538,8 +540,8 @@
       hungarianMinor: ['Minor', 'Diminished', 'Augmented', 'Minor', 'Major', 'Major', 'Diminished'],
       doubleHarmonic: ['Minor', 'Major', 'Minor', 'Minor', 'Major', 'Diminished', 'Major'],
       phrygianDominant: ['Minor', 'Major', 'Minor', 'Minor', 'Major', 'Diminished', 'Major'],
-      neapolitanMinor: ['Minor', 'Major', 'Minor', 'Minor', 'Major', 'Diminished', 'Major'],
-      neapolitanMajor: ['Minor', 'Major', 'Minor', 'Minor', 'Major', 'Diminished', 'Major'],
+      neapolitanMinor: ['Minor', 'Diminished', 'Augmented', 'Minor', 'Major', 'Major', 'Diminished'],
+      neapolitanMajor: ['Major', 'Major', 'Minor', 'Diminished', 'Major', 'Minor', 'Minor'],
       enigmatic: ['Minor', 'Major', 'Augmented', 'Diminished', 'Minor', 'Major', 'Major'],
       augmented: ['Minor', 'Augmented', 'Minor', 'Augmented', 'Minor', 'Augmented'],
       prometheus: ['Major', 'Major', 'Minor', 'Diminished', 'Minor', 'Major'],
@@ -564,46 +566,46 @@
 
     // Roman numeral patterns for each scale type
     const ROMAN_NUMERALS = {
-      major: ['I', 'ii', 'iii', 'IV', 'V', 'vi', 'vii°'],
-      minor: ['i', 'ii°', 'III', 'iv', 'v', 'VI', 'VII'],
-      harmonicMinor: ['i', 'ii°', 'III+', 'iv', 'V', 'VI', 'vii°'],
-      melodicMinor: ['i', 'ii', 'III+', 'IV', 'V', 'vi°', 'vii°'],
-      dorian: ['i', 'ii', 'III', 'IV', 'v', 'vi°', 'VII'],
-      phrygian: ['i', '♭II', 'III', 'iv', 'v', '♭VI', '♭VII'],
-      lydian: ['I', 'II', 'III', '♯IV', 'V', 'vi', 'vii'],
-      mixolydian: ['I', 'ii', 'iii', 'IV', 'v', 'vi', '♭VII'],
-      locrian: ['i°', '♭II', '♭III', 'iv', '♭V', '♭VI', '♭VII'],
+      major: ['I', 'ii', 'iii', 'IV', 'V', 'vi', 'vii�'],
+      minor: ['i', 'ii�', 'III', 'iv', 'v', 'VI', 'VII'],
+      harmonicMinor: ['i', 'ii�', 'III+', 'iv', 'V', 'VI', 'vii�'],
+      melodicMinor: ['i', 'ii', 'III+', 'IV', 'V', 'vi�', 'vii�'],
+      dorian: ['i', 'ii', 'III', 'IV', 'v', 'vi�', 'VII'],
+      phrygian: ['i', '?II', 'III', 'iv', 'v', '?VI', '?VII'],
+      lydian: ['I', 'II', 'III', '?IV', 'V', 'vi', 'vii'],
+      mixolydian: ['I', 'ii', 'iii', 'IV', 'v', 'vi', '?VII'],
+      locrian: ['i�', '?II', '?III', 'iv', '?V', '?VI', '?VII'],
       majorPentatonic: ['I', 'ii', 'iii', 'V', 'vi'],
-      minorPentatonic: ['i', '♭III', 'iv', 'v', '♭VII'],
-      blues: ['i', '♭III', 'iv', '♭v', 'v', '♭VII'],
-      wholeTone: ['I', 'II', 'III', '♯IV', '♯V', '♯VI'],
-      diminishedHW: ['i°', '♭II', '♭III', 'iii°', '♯IV', 'v', 'VI', '♭VII'],
-      diminishedWH: ['i°', '♭II', '♭III', 'iii°', '♯IV', 'v', 'VI', '♭VII'],
-      hungarianMinor: ['i', 'ii°', '♭III', '♯iv', 'v', '♭VI', 'VII'],
-      doubleHarmonic: ['i', '♭II', 'III', 'iv', 'v', '♭VI', 'VII'],
-      phrygianDominant: ['i', '♭II', 'III', 'iv', 'v', '♭VI', '♭VII'],
-      neapolitanMinor: ['i', '♭II', '♭III', 'iv', 'v', '♭VI', 'VII'],
-      neapolitanMajor: ['i', '♭II', '♭III', 'iv', 'v', '♭VI', 'VII'],
-      enigmatic: ['i', '♭II', 'III', '♯IV', '♯V', '♯VI', 'VII'],
-      augmented: ['i', '♭III', 'III', 'v', '♯v', 'VII'],
-      prometheus: ['I', 'II', 'III', '♯IV', 'VI', '♭VII'],
-      tritone: ['i', '♭II', 'III', '♭v', 'v', '♭VII'],
-      balinese: ['i', '♭II', 'IV', 'v', '♭VI'],
-      japanese: ['i', '♭II', 'IV', 'v', '♭VII'],
-      hirajoshi: ['i', 'III', '♯IV', 'v', 'VII'],
-      iwato: ['i', '♭II', 'IV', '♭v', '♭VII'],
+      minorPentatonic: ['i', '?III', 'iv', 'v', '?VII'],
+      blues: ['i', '?III', 'iv', '?v', 'v', '?VII'],
+      wholeTone: ['I', 'II', 'III', '?IV', '?V', '?VI'],
+      diminishedHW: ['i�', '?II', '?III', 'iii�', '?IV', 'v', 'VI', '?VII'],
+      diminishedWH: ['i�', '?II', '?III', 'iii�', '?IV', 'v', 'VI', '?VII'],
+      hungarianMinor: ['i', 'ii�', '?III', '?iv', 'v', '?VI', 'VII'],
+      doubleHarmonic: ['i', '?II', 'III', 'iv', 'v', '?VI', 'VII'],
+      phrygianDominant: ['i', '?II', 'III', 'iv', 'v', '?VI', '?VII'],
+      neapolitanMinor: ['i', '?II', '?III', 'iv', 'v', '?VI', 'VII'],
+      neapolitanMajor: ['i', '?II', '?III', 'iv', 'v', '?VI', 'VII'],
+      enigmatic: ['i', '?II', 'III', '?IV', '?V', '?VI', 'VII'],
+      augmented: ['i', '?III', 'III', 'v', '?v', 'VII'],
+      prometheus: ['I', 'II', 'III', '?IV', 'VI', '?VII'],
+      tritone: ['i', '?II', 'III', '?v', 'v', '?VII'],
+      balinese: ['i', '?II', 'IV', 'v', '?VI'],
+      japanese: ['i', '?II', 'IV', 'v', '?VII'],
+      hirajoshi: ['i', 'III', '?IV', 'v', 'VII'],
+      iwato: ['i', '?II', 'IV', '?v', '?VII'],
       yo: ['I', 'II', 'IV', 'V', 'VI'],
       chinese: ['I', 'II', 'III', 'V', 'VI'],
       mongolian: ['I', 'II', 'III', 'V', 'VI'],
-      persian: ['i', '♭II', 'III', 'iv', '♭v', '♭VI', 'VII'],
-      arabian: ['i', 'ii°', '♭III', 'iv', '♭v', '♭VI', '♭VII'],
-      byzantine: ['i', '♭II', 'III', 'iv', 'v', '♭VI', 'VII'],
-      hungarianGypsy: ['i', 'ii°', '♭III', '♯iv', 'v', '♭VI', 'VII'],
-      oriental: ['i', '♭II', 'III', 'iv', '♭v', 'VI', '♭VII'],
-      majorBebop: ['I', 'ii', 'iii', 'IV', 'V', '♭VI', 'VI', 'VII'],
-      minorBebop: ['i', 'ii°', '♭III', 'iv', 'v', '♭VI', 'VI', 'VII'],
-      dominantBebop: ['I', 'ii', 'iii', 'IV', 'V', 'vi', '♭VII', 'VII'],
-      chromatic: ['i', '♭II', 'II', '♭III', 'III', 'IV', '♯IV', 'V', '♯V', 'VI', '♯VI', 'VII']
+      persian: ['i', '?II', 'III', 'iv', '?v', '?VI', 'VII'],
+      arabian: ['i', 'ii�', '?III', 'iv', '?v', '?VI', '?VII'],
+      byzantine: ['i', '?II', 'III', 'iv', 'v', '?VI', 'VII'],
+      hungarianGypsy: ['i', 'ii�', '?III', '?iv', 'v', '?VI', 'VII'],
+      oriental: ['i', '?II', 'III', 'iv', '?v', 'VI', '?VII'],
+      majorBebop: ['I', 'ii', 'iii', 'IV', 'V', '?VI', 'VI', 'VII'],
+      minorBebop: ['i', 'ii�', '?III', 'iv', 'v', '?VI', 'VI', 'VII'],
+      dominantBebop: ['I', 'ii', 'iii', 'IV', 'V', 'vi', '?VII', 'VII'],
+      chromatic: ['i', '?II', 'II', '?III', 'III', 'IV', '?IV', 'V', '?V', 'VI', '?VI', 'VII']
     };
 
     // Chord function names for each scale type
@@ -701,7 +703,7 @@
       'Altered (7alt)': [0, 4, 7, 10, 13, 15, 18],
       
       // Special/Classical Chords
-      'Neapolitan (N6)': [0, 4, 7],
+      'Neapolitan (N6)': [0, 3, 6, 10],
       'Italian 6th': [0, 4, 10],
       'French 6th': [0, 4, 9, 10],
       'German 6th': [0, 3, 4, 10],
@@ -1019,3 +1021,4 @@
   </script>
 </body>
 </html>
+
